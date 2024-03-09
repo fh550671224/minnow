@@ -85,7 +85,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     return;
   }
 
-  data = data.substr( l, r );
+  data = data.substr( l, r-l );
 
   // insert to buffer
   ReassembleItem item;
