@@ -83,6 +83,9 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
 
   if ( n <= 0 ) {
     // discard
+    if ( is_last_substring ) {
+      output_.writer().close();
+    }
     return;
   }
 
