@@ -6,6 +6,7 @@
 
 struct ReassembleItem
 {
+  ReassembleItem() {}
   uint64_t start;
   uint64_t end;
   std::string data;
@@ -52,7 +53,7 @@ public:
 
 private:
   ByteStream output_; // the Reassembler writes to this ByteStream
-  std::map<int, ReassembleItem> m = std::map<int, ReassembleItem>();
+  std::map<uint64_t , ReassembleItem> m = std::map<uint64_t, ReassembleItem>();
   void insert_m( ReassembleItem& item );
 
   uint64_t cur = 0;
