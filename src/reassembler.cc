@@ -57,11 +57,8 @@ void Reassembler::insert_m( ReassembleItem& item )
     it = m.erase( it );
   }
 
-
   // merging finished, insert
   m[item.start] = item;
-
-//  cout<<item.start<<";"<<item.end<<";"<<item.data<<";"<<m.size()<<endl;
 }
 
 void Reassembler::insert( uint64_t first_index, string data, bool is_last_substring )
@@ -88,6 +85,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
   }
 
   data = data.substr( l, r );
+  cout<<"data:"<<data<<endl;
 
   // insert to buffer
   ReassembleItem item;
