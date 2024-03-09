@@ -110,7 +110,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
 //    cout << "cur: " << cur << "; originalLen:" << originalData.length() << "; datalen:" << it->second.data.length()
 //         << "; cap:" << writer().available_capacity() << " " << l << " " << n << endl;
     cout << "cur: " << cur << "; originalLen:" << originalData.length() << "; datalen:" << it->second.data.length()
-         << " " << l << " " << n << endl;
+         << endl;
     output_.writer().push( it->second.data );
     cur += it->second.data.length();
     it = m.erase( it );
