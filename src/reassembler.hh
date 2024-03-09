@@ -8,6 +8,12 @@ struct ReassembleItem
   uint64_t start;
   uint64_t end;
   std::string data;
+  ReassembleItem( uint64_t s, uint64_t e, std::string d )
+  {
+    start = s;
+    end = e;
+    data = d;
+  };
 };
 
 class Reassembler
