@@ -100,7 +100,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     if ( it->second.start > cur ) {
       break;
     }
-    cout<<it->second.start<<";"<<it->second.end<<";"<<endl;
+    cout<<it->second.start<<";"<<it->second.end<<";"<<it->second.data.length()<<endl;
 
     // push
     output_.writer().push( it->second.data );
