@@ -1,4 +1,5 @@
 #include "reassembler.hh"
+#include <iostream>
 
 using namespace std;
 
@@ -103,6 +104,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     output_.writer().push( data );
     cur += data.length();
     it = m.erase( it );
+    cout << "here" << endl;
   }
 
   if ( is_last_substring ) {
