@@ -114,7 +114,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     it = m.erase( it );
   }
 
-  if ( is_last_substring ) {
+  if ( is_last_substring && n == originalData.length() ) {
     output_.writer().close();
   }
 }
