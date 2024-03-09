@@ -69,23 +69,24 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
   //  (void)is_last_substring;
   auto originalData = data;
 
-  uint64_t l = 0, r = data.length();
+  uint64_t l = 0, n = data.length();
 
   if ( first_index <= cur ) {
     l = cur - first_index;
+    n -= cur - first_index;
   }
 
   if ( first_index + data.length() > cur + writer().available_capacity() ) {
     auto diff = ( first_index + data.length() ) - ( cur + writer().available_capacity() );
-    r -= diff;
+    n -= diff;
   }
 
-  if ( r < l ) {
+  if ( n <= 0 ) {
     // discard
     return;
   }
 
-  data = data.substr( l, r-l );
+  data = data.substr( l, n );
 
   // insert to buffer
   ReassembleItem item;
@@ -103,7 +104,8 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     }
 
     // push
-    cout << "cur: " << cur << "; original:" << originalData << "; data:" << it->second.data <<"; cap:"<<writer().available_capacity()<<" "<<l<<" "<<r<< endl;
+    cout << "cur: " << cur << "; original:" << originalData << "; data:" << it->second.data
+         << "; cap:" << writer().available_capacity() << " " << l << " " << n << endl;
     output_.writer().push( it->second.data );
     cur += it->second.data.length();
     it = m.erase( it );
