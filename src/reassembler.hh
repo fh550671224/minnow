@@ -1,6 +1,14 @@
 #pragma once
 
 #include "byte_stream.hh"
+#include <map>
+
+struct ReassembleItem
+{
+  uint64_t start;
+  uint64_t end;
+  std::string data;
+};
 
 class Reassembler
 {
@@ -33,7 +41,7 @@ public:
   // How many bytes are stored in the Reassembler itself?
   uint64_t bytes_pending() const;
 
-  // Access output stream reader
+  // Access output   stream reader
   Reader& reader() { return output_.reader(); }
   const Reader& reader() const { return output_.reader(); }
 
@@ -42,4 +50,8 @@ public:
 
 private:
   ByteStream output_; // the Reassembler writes to this ByteStream
+  std::map<int, ReassembleItem> m;
+  void insert_m(ReassembleItem& item );
+
+  uint64_t cur = 0;
 };
