@@ -50,8 +50,8 @@ public:
 
 private:
   ByteStream output_; // the Reassembler writes to this ByteStream
-  std::map<int, ReassembleItem> m;
-  void insert_m(ReassembleItem& item );
+  std::map<int, ReassembleItem> m = std::map<int, ReassembleItem>();
+  void insert_m( ReassembleItem& item );
 
   uint64_t cur = 0;
 };
