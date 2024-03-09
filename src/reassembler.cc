@@ -86,7 +86,11 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
   data = data.substr( l, r );
 
   // insert to buffer
-  auto item = ReassembleItem { first_index, first_index + data.length(), data };
+  ReassembleItem item;
+  item.start = first_index;
+  item.end = first_index + data.length();
+  item.data = data;
+
   insert_m( item );
 
   // try to push as much as possible

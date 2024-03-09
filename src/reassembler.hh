@@ -6,11 +6,10 @@
 
 struct ReassembleItem
 {
-  ReassembleItem() {}
   uint64_t start;
   uint64_t end;
   std::string data;
-  ReassembleItem( uint64_t s, uint64_t e, std::string d ) : start( s ), end( e ), data(std::move( d )) {};
+  ReassembleItem() : start(0), end(0), data("") {}
 };
 
 class Reassembler
