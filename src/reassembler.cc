@@ -98,13 +98,14 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
 
   // try to push as much as possible
   auto it = m.begin();
-  for ( int i = 0;i<100;i++ ) {
-    if ( it->second.start > cur )
+  while ( true ) {
+    if ( it->second.start > cur ) {
       break;
+    }
 
     // push
-    output_.writer().push( data );
-    cur += data.length();
+    output_.writer().push( it->second.data );
+    cur += it->second.data.length();
     it = m.erase( it );
     cout << "here3" << endl;
   }
