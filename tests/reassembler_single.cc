@@ -15,15 +15,15 @@ int main()
       test.execute( IsFinished { false } );
     }
 
-//    {
-//      ReassemblerTestHarness test { "insert a @ 0", 65000 };
-//
-//      test.execute( Insert { "a", 0 } );
-//
-//      test.execute( BytesPushed( 1 ) );
-//      test.execute( ReadAll( "a" ) );
-//      test.execute( IsFinished { false } );
-//    }
+    {
+      ReassemblerTestHarness test { "insert a @ 0", 65000 };
+
+      test.execute( Insert { "a", 0 } );
+
+      test.execute( BytesPushed( 1 ) );
+      test.execute( ReadAll( "a" ) );
+      test.execute( IsFinished { false } );
+    }
 //
 //    {
 //      ReassemblerTestHarness test { "insert a @ 0 [last]", 65000 };
