@@ -61,7 +61,7 @@ void Reassembler::insert_m( ReassembleItem& item )
   // merging finished, insert
   m[item.start] = item;
 
-  cout<<item.start<<";"<<item.end<<";"<<item.data<<";"<<m.size()<<endl;
+//  cout<<item.start<<";"<<item.end<<";"<<item.data<<";"<<m.size()<<endl;
 }
 
 void Reassembler::insert( uint64_t first_index, string data, bool is_last_substring )
@@ -99,7 +99,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
 
   // try to push as much as possible
   auto it = m.begin();
-  while ( true ) {
+  while ( it != m.end() ) {
     if ( it->second.start > cur ) {
       break;
     }
