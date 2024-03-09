@@ -64,9 +64,13 @@ void Reassembler::insert_m( ReassembleItem& item )
 void Reassembler::insert( uint64_t first_index, string data, bool is_last_substring )
 {
   // Your code here.
-  (void)first_index;
-  (void)data;
-  (void)is_last_substring;
+//  (void)first_index;
+//  (void)data;
+//  (void)is_last_substring;
+  if(data == "abc"){
+    cout<<first_index<<";"<<cur<<";"<<writer().available_capacity()<<endl;
+  }
+
 
   uint64_t l = 0, r = data.length();
 
@@ -85,7 +89,6 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
   }
 
   data = data.substr( l, r );
-  cout<<"data:"<<data<<endl;
 
   // insert to buffer
   ReassembleItem item;
