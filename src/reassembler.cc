@@ -93,7 +93,6 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
   item.data = data;
 
   insert_m( item );
-  cout<<item.start<<";"<<item.end<<";"<<item.data<<endl;
 
   // try to push as much as possible
   auto it = m.begin();
@@ -101,6 +100,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     if ( it->second.start > cur ) {
       break;
     }
+    cout<<it->second.start<<";"<<it->second.end<<";"<<it->second.data<<endl;
 
     // push
     output_.writer().push( it->second.data );
