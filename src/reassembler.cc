@@ -83,7 +83,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
 
   if ( n <= 0 ) {
     // discard
-    if ( is_last_substring ) {
+    if ( is_last_substring && cur == first_index + originalData.length()) {
       output_.writer().close();
     }
     return;
@@ -107,8 +107,8 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     }
 
     // push
-    cout << "cur: " << cur << "; original:" << originalData << "; data:" << it->second.data
-         << "; cap:" << writer().available_capacity() << " " << l << " " << n << endl;
+//    cout << "cur: " << cur << "; original:" << originalData << "; data:" << it->second.data
+//         << "; cap:" << writer().available_capacity() << " " << l << " " << n << endl;
     output_.writer().push( it->second.data );
     cur += it->second.data.length();
     it = m.erase( it );
