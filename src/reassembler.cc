@@ -21,7 +21,6 @@ void Reassembler::insert_m( ReassembleItem& item )
   auto it = m.lower_bound( item.start );
 
   while ( it != m.begin() ) {
-    cout << "here1" << endl;
     auto prevIt = std::prev( it );
     auto prevItem = prevIt->second;
     if ( !is_overlapped( prevItem, item ) )
@@ -43,7 +42,6 @@ void Reassembler::insert_m( ReassembleItem& item )
   }
 
   while ( it != m.end() ) {
-    cout << "here2" << endl;
     if ( !is_overlapped( it->second, item ) )
       break;
 
@@ -107,7 +105,6 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     output_.writer().push( it->second.data );
     cur += it->second.data.length();
     it = m.erase( it );
-    cout << "here3" << endl;
   }
 
   if ( is_last_substring ) {
@@ -121,7 +118,6 @@ uint64_t Reassembler::bytes_pending() const
   auto len = 0;
   auto it = m.begin();
   while ( it != m.end() ) {
-    cout << "here4" << endl;
     len += it->second.data.length();
     it++;
   }
