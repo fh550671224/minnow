@@ -42,7 +42,6 @@ void Reassembler::insert_m( ReassembleItem& item )
   }
 
   while ( it != m.end() ) {
-    printf("it: %ld-%ld; item: %ld-%ld\toverlap: %d\n", it->second.start,it->second.end, item.start,item.end, is_overlapped( it->second, item ));
     if ( !is_overlapped( it->second, item ) )
       break;
 
@@ -72,15 +71,20 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
   auto originalData = data;
 
   uint64_t l = 0, n = data.length();
+  ReassembleItem item;
+  item.start = first_index;
+  item.end = first_index + data.length();
 
   if ( first_index <= cur ) {
     l = cur - first_index;
     n -= cur - first_index;
+    item.start = cur;
   }
 
   if ( first_index + data.length() > cur + writer().available_capacity() ) {
     auto diff = ( first_index + data.length() ) - ( cur + writer().available_capacity() );
     n -= diff;
+    item.end = cur + writer().available_capacity();
   }
 
   if ( n <= 0 ) {
@@ -94,9 +98,6 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
   data = data.substr( l, n );
 
   // insert to buffer
-  ReassembleItem item;
-  item.start = first_index;
-  item.end = first_index + data.length();
   item.data = data;
 
   insert_m( item );
@@ -109,10 +110,6 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     }
 
     // push
-//    cout << "cur: " << cur << "; originalLen:" << originalData.length() << "; datalen:" << it->second.data.length()
-//         << "; cap:" << writer().available_capacity() << " " << l << " " << n << endl;
-    cout << "cur: " << cur << "; originalLen:" << originalData.length() << "; datalen:" << it->second.data.length()
-         << endl;
     output_.writer().push( it->second.data );
     cur += it->second.data.length();
     it = m.erase( it );
