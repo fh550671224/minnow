@@ -54,6 +54,8 @@ void Reassembler::insert_m( ReassembleItem& item )
       item.end = e;
     }
 
+    cout<<"item.data: "<<item.data<<endl;
+
     it = m.erase( it );
   }
 
