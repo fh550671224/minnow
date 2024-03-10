@@ -64,8 +64,6 @@ void Reassembler::insert_m( ReassembleItem& item )
 void Reassembler::insert( uint64_t first_index, string data, bool is_last_substring )
 {
   // Your code here.
-  auto originalData = data;
-
   if(is_last_substring){
     last = first_index + data.length();
   }
@@ -77,14 +75,14 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
   item.end = first_index + data.length();
 
   if ( first_index <= cur ) {
-    l = cur - first_index;
-    n -= cur - first_index;
+//    l = cur - first_index;
+//    n -= cur - first_index;
     item.start = cur;
   }
 
   if ( first_index + data.length() > cur + writer().available_capacity() ) {
-    auto diff = ( first_index + data.length() ) - ( cur + writer().available_capacity() );
-    n -= diff;
+//    auto diff = ( first_index + data.length() ) - ( cur + writer().available_capacity() );
+//    n -= diff;
     item.end = cur + writer().available_capacity();
   }
 
@@ -96,7 +94,8 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     return;
   }
 
-  data = data.substr( l, n );
+//  data = data.substr( l, n );
+  data = data.substr( item.start - first_index, item.end - item.start );
 
   // insert to buffer
   item.data = data;
