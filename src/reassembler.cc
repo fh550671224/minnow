@@ -42,6 +42,7 @@ void Reassembler::insert_m( ReassembleItem& item )
   }
 
   while ( it != m.end() ) {
+    cout<<"item.data1: "<<item.data<<endl;
     if ( !is_overlapped( it->second, item ) )
       break;
 
@@ -54,8 +55,7 @@ void Reassembler::insert_m( ReassembleItem& item )
       item.end = e;
     }
 
-    cout<<"item.data: "<<item.data<<endl;
-
+    cout<<"item.data2: "<<item.data<<endl;
     it = m.erase( it );
   }
 
