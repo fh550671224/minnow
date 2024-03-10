@@ -42,7 +42,7 @@ void Reassembler::insert_m( ReassembleItem& item )
   }
 
   while ( it != m.end() ) {
-    printf("it: %llu-%llu; item: %llu-%llu\toverlap: %d\n", it->second.start,it->second.end, item.start,item.end, is_overlapped( it->second, item ));
+    printf("it: %d-%d; item: %d-%d\toverlap: %d\n", it->second.start,it->second.end, item.start,item.end, is_overlapped( it->second, item ));
     if ( !is_overlapped( it->second, item ) )
       break;
 
