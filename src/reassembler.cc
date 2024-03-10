@@ -87,7 +87,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
   }
 
 
-  if ( item.end - item.start <= 0 ) {
+  if ( item.end  <= item.start ) {
     // discard
     if ( cur == last) {
       output_.writer().close();
