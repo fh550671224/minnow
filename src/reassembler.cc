@@ -68,8 +68,8 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     last = first_index + data.length();
   }
 
-  uint64_t l = 0;
-  long n = data.length();
+//  uint64_t l = 0;
+//  long n = data.length();
   ReassembleItem item;
   item.start = first_index;
   item.end = first_index + data.length();
@@ -86,7 +86,8 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     item.end = cur + writer().available_capacity();
   }
 
-  if ( n <= 0 ) {
+
+  if ( item.end - item.start <= 0 ) {
     // discard
     if ( cur == last) {
       output_.writer().close();
