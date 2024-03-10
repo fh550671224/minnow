@@ -54,7 +54,6 @@ void Reassembler::insert_m( ReassembleItem& item )
       item.end = e;
     }
 
-    cout<<"item.data2: "<<item.data<<endl;
     it = m.erase( it );
   }
 
@@ -66,6 +65,10 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
 {
   // Your code here.
   auto originalData = data;
+
+  if(is_last_substring){
+    last = first_index + data.length();
+  }
 
   uint64_t l = 0;
   long n = data.length();
@@ -87,7 +90,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
 
   if ( n <= 0 ) {
     // discard
-    if ( is_last_substring && cur == first_index + originalData.length()) {
+    if ( cur == last) {
       output_.writer().close();
     }
     return;
@@ -113,7 +116,7 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     it = m.erase( it );
   }
 
-  if ( is_last_substring && cur == first_index + originalData.length()) {
+  if ( cur == last) {
     output_.writer().close();
   }
 }

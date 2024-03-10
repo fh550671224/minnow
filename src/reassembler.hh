@@ -9,7 +9,7 @@ struct ReassembleItem
   uint64_t start;
   uint64_t end;
   std::string data;
-  ReassembleItem() : start(0), end(0), data("") {}
+  ReassembleItem() : start( 0 ), end( 0 ), data( "" ) {}
 };
 
 class Reassembler
@@ -52,8 +52,9 @@ public:
 
 private:
   ByteStream output_; // the Reassembler writes to this ByteStream
-  std::map<uint64_t , ReassembleItem> m = std::map<uint64_t, ReassembleItem>();
+  std::map<uint64_t, ReassembleItem> m = std::map<uint64_t, ReassembleItem>();
   void insert_m( ReassembleItem& item );
 
   uint64_t cur = 0;
+  uint64_t last = 0 - 1;
 };
